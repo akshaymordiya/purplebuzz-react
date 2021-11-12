@@ -72,7 +72,6 @@ const Home = () => {
         return displayServices.map(data => data.id);
     }, [displayServices]);
 
-    console.log(displayServicesDataId);
 
     return (
         <>

@@ -36,7 +36,7 @@ const initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolor.',
             category: ['Business', 'Marketing', 'Social Media'],
             numberOfLikes: 0,
-            numberOfComments: 0,
+            numberOfComments: 7,
             thumbnail: postOne
         },
         {
@@ -86,7 +86,7 @@ const initialState = {
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolor.',
             category: ['Marketing', 'Graphic'],
             numberOfLikes: 0,
-            numberOfComments: 0,
+            numberOfComments: 6,
             thumbnail: postSix
         },
     ]

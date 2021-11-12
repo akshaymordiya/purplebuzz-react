@@ -15,7 +15,11 @@ const StyledBox = styled(props => <Box {...props} />)(() => ({
     }
 }))
 
-const Comment = ({comment}) => {
+const Comment = ({comment, replyHandler, replyToParent}) => {
+    const reply = {
+        author: comment.author,
+        id: replyToParent.id
+    }
     return (
         <Grid container marginY="20px">
             <Grid item xs={2} md={1} >
@@ -25,11 +29,11 @@ const Comment = ({comment}) => {
                 <Box display="flex" justifyContent="space-between">
                     <Stack spacing={1}>
                         <Typography variant="p" fontWeight="bold">{comment.author}</Typography>
-                        <Typography variant="body2" >{moment(comment.created_at, 'YYYY-MM-DD').fromNow()}</Typography>
+                        <Typography variant="body2" >{moment(comment.created_at).calendar()}</Typography>
                     </Stack>
-                    <StyledBox  >
+                    <StyledBox  onClick={() => replyHandler(reply)}>
                         <Reply sx={{ color: '#4232c2', fontSize: '20px'}} />
-                        <Typography variant="body1" color="#4232c2" fontSize="15px" marginX="5px">  Reply</Typography>
+                        <Typography variant="body1" color="#4232c2" fontSize="15px" marginX="5px">Reply</Typography>
                     </StyledBox>
                 </Box>
                 <Typography padding="15px" border="1px solid #e0e0e0" marginTop="10px" borderRadius="5px">

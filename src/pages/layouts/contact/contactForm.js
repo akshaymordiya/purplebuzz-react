@@ -169,9 +169,12 @@ const ContactForm = () => {
                     <InputText id="standard-multiline-static" multiline rows={4} variant="outlined" fullWidth {...bindMessage} errors={messageErrors} />
                 </Grid>
             </Grid>
-            <Box display="flex" justifyContent="flex-end" padding="13px">
-                <BrandButton onClickHandler={submitForm} filled color="#03a9f4" textColor="#fff" spacing="15px 15px" fontsize="13px" width="20%">Send Message</BrandButton>
+            <Box marginTop="30px" sx={{ width: { xs: "100%", sm: '30%', float: 'right' }}}>
+                <BrandButton onClickHandler={submitForm} filled color="#03a9f4" textColor="#fff" spacing="15px 15px" fontsize="13px" >Send Message</BrandButton>
             </Box>
+            {/* <Box >
+                <BrandButton onClickHandler={sendingComment} outlined radius="10px" color="#4232c2" shadowOnHover>Send Message</BrandButton>
+            </Box> */}
         </Box>
     );
 }

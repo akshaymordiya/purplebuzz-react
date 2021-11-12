@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useMemo, useState } from 'react';
 import { Typography, Container, Box, styled } from "@mui/material";
 import { renderMarkup } from  "react-render-markup";
 import Flexcontainer from '../../../components/UI/flexContainer';
@@ -6,6 +6,7 @@ import DetailsCard from '../../../components/UI/detailsCard';
 import ImageGallary from '../../../components/UI/imageGallary';
 import Comment from "../../../components/UI/comment";
 import CommentForm from '../../../components/UI/commentForm';
+import moment from 'moment';
 
 const StyledBox = styled(props => <Box {...props} />)(() => ({
     maxHeight: '800px',
@@ -29,6 +30,31 @@ const StyledBox = styled(props => <Box {...props} />)(() => ({
 }))
 
 const PostDetails = ({postDetails}) => {
+    const [replyToComment, setReplyToComment] = useState({
+        replying: false,
+        replyto: '',
+        selectedCommentId: 0,
+        commentTo: ''
+    })
+
+    const handleCommentReply = (comment) => {
+        setReplyToComment({
+            replying: true,
+            replyto: `Reply to ${comment.author}...`,
+            selectedCommentId: comment.id,
+            commentTo: comment.author
+        });
+    }
+
+    const discardCommentReply = () => {
+        setReplyToComment({
+            replying: false,
+            replyto: '',
+            selectedCommentId: 0,
+            commentTo: ''
+        })
+    }
+
     return (
         <Flexcontainer >
             <Container sx={{ padding: {xs: '30px 0px' , lg: '80px'}}} >
@@ -47,13 +73,10 @@ const PostDetails = ({postDetails}) => {
                     {postDetails.comments.length ? 
                         postDetails.comments.map(comment => (
                             <Fragment key={comment.id}>
-                                <Comment comment={comment} />
+                                <Comment comment={comment} replyToParent={comment} replyHandler={handleCommentReply} />
                                 {comment.replies.length !== 0 && comment.replies.map(reply => (
                                     <Box key={reply.id} paddingLeft="80px" marginTop="10px">
-                                        <Comment comment={reply} />
-                                        {reply.replies.length !== 0 && reply.replies.map(rep => (
-                                            <Comment comment={rep} />
-                                        ))  }
+                                        <Comment comment={reply} replyToParent={comment} replyHandler={handleCommentReply} />
                                     </Box>
                                 ))}
                             </Fragment>
@@ -62,7 +85,7 @@ const PostDetails = ({postDetails}) => {
                         <Typography variant="body1" >No comments available, be the first one!</Typography>
                     )}
                 </StyledBox>
-                <CommentForm postId={postDetails.id} />
+                <CommentForm post={postDetails} replyingStatus={replyToComment} discardReplyHandler={discardCommentReply} />
             </Container>
         </Flexcontainer>
     );

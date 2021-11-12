@@ -159,7 +159,7 @@ const Footer = () => {
                     />
                 </Grid>
             </Grid>
-            <StyledContainer maxWidth={false} bgcolor="#1565c0" shadow>
+            <StyledContainer maxWidth={false} bgcolor="#1565c0" shadow="true">
                 <Typography variant="p" paddingX="40px" color="inherit">© Copyright 2021 Purple Buzz Company. All Rights Reserved.</Typography>
                 <Typography variant="p" paddingX="40px">Designed by
                     <Typography component="span" marginLeft="2px" fontWeight="bold">TemplateMo</Typography>

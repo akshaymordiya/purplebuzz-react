@@ -17,15 +17,6 @@ const StyledBox = styled(props => (
     transition: '.3s'
 }));
 
-const StyledImage = styled(props => (
-    <img {...props}/>
-))(({theme}) => ({
-    [theme.breakpoints.down('sm')]: {
-        width: '300px',
-        height: '250px'
-    }
-}));
-
 const ImageGallary = ({images}) => {
     const [activeImage, setActiveImage] = useState(3);
 
@@ -35,11 +26,11 @@ const ImageGallary = ({images}) => {
 
     return (
         <Box  padding="20px 0px">
-            <img src={images[activeImage].original} width="100%" height="100%" alt='active-image' style={{borderRadius: '10px', border:'1px solid #e0e0e0'}} />
+            <img src={images[activeImage].original} width="100%" height="100%" alt='active-view' style={{borderRadius: '10px', border:'1px solid #e0e0e0'}} />
             <Box padding="50px 20px" display="flex" justifyContent="center">
                 {images.map((img, index) => (
                     <StyledBox key={index} activeImg={index === activeImage} onClick={() => changeActiveImage(index)}>
-                        <img src={img.thumbnail} width="100%" height="100%" alt={`img-${index}`} style={{ borderRadius:"10px"}} />
+                        <img src={img.thumbnail} width="100%" height="100%" alt={`view-${index}`} style={{ borderRadius:"10px"}} />
                     </StyledBox>
                 ))}
             </Box>

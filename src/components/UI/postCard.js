@@ -3,6 +3,7 @@ import { Card, CardActionArea, CardMedia, CardContent, Typography, CardActions, 
 import BrandButton from '../elements/brandButton';
 import { DoubleArrow, FavoriteBorder, Forum } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const StyledCard = styled(props => <Card {...props} />)(({theme, radius}) => ({
     maxWidth: 400,
@@ -31,6 +32,8 @@ const StyledBox = styled(props => <Box {...props}></Box>)(() => ({
 }))
 
 const PostCard = ({post, url, ...restProps}) => {
+    const posts = useSelector(state => state.work.workPosts);
+    const details = posts.find(p => p.id === post.id);
     return (
         <StyledCard {...restProps}>
             <NavLink to={url} style={{ textDecoration: 'none', color: '#000'}} >
@@ -62,9 +65,9 @@ const PostCard = ({post, url, ...restProps}) => {
                         {restProps.likeCommentsInfo && (
                             <Stack direction="row">
                                 <FavoriteBorder sx={{ color: '#4232c2'}} />
-                                <Typography variant="body2" marginX="10px" fontSize="16px" color="#4232c2">{post.numberOfLikes}</Typography>
+                                <Typography variant="body2" marginX="10px" fontSize="16px" color="#4232c2">{details.numberOfLikes}</Typography>
                                 <Forum sx={{ color: '#4232c2'}} />
-                                <Typography variant="body2" marginX="10px" fontSize="16px" color="#4232c2">{post.numberOfComments}</Typography>
+                                <Typography variant="body2" marginX="10px" fontSize="16px" color="#4232c2">{details.numberOfComments}</Typography>
                             </Stack>
                         )}
                     </Box>

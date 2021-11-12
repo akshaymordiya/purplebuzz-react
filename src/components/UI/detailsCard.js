@@ -1,4 +1,4 @@
-import { Container, Box,Divider, Typography, Stack } from '@mui/material';
+import { Box,Divider, Typography, Stack } from '@mui/material';
 import React from 'react';
 const DetailsCard = ({ title , subTitle, ...rest}) => {
     const propsSanitization = {
